@@ -16,23 +16,27 @@
 
 package language_engine.google;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.intellij.ide.util.PropertiesComponent;
-import data.Log;
 import data.StorageDataKey;
 import language_engine.HttpUtils;
+import module.SimpleNameValuePair;
 import module.SupportedLanguages;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.jetbrains.annotations.NotNull;
+import util.Logger;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.IllegalFormatException;
@@ -43,9 +47,7 @@ import java.util.List;
  * Created by Wesley Lin on 12/1/14.
  */
 public class GoogleTranslationApi {
-    private static final String BASE_TRANSLATION_URL = "https://www.googleapis.com/language/translate/v2?%s&target=%s&source=%s&key=%s";
-    //    "https://translate.google.com/?hl=zh#auto/zh-CN/%E5%9B%9E%E5%AE%B6";
-    private static String BASE_GOOGLE_URL = "https://translate.google.com/?hl=zh#auto/%s/%s";
+    private static final String BASE_TRANSLATION_URL = "https://translation.googleapis.com/language/translate/v2";
 
     /**
      * @param querys
@@ -59,44 +61,20 @@ public class GoogleTranslationApi {
         if (querys.isEmpty())
             return null;
 
-        for (int i=0;i<querys.size();i++){
-            String str = querys.get(i);
-            querys.set(i,URLEncoder.encode(str).replaceAll("\\+","%20"));
-        }
-        List<String> urls = new ArrayList<>();
-        for (String q:querys){
-            String url = String.format(BASE_GOOGLE_URL,targetLanguageCode,q);
-            urls.add(url);
-        }
 
-        if (urls.size() >0){
 
-        }
-        String query = "";
-        for (int i = 0; i < querys.size(); i++) {
-            query += ("q=" + URLEncoder.encode(querys.get(i)));
-            if (i != querys.size() - 1) {
-                query += "&";
-            }
+
+        List<NameValuePair> para=new ArrayList<>();
+        para.add(new SimpleNameValuePair("key",PropertiesComponent.getInstance().getValue(StorageDataKey.GoogleApiKeyStored)));
+        para.add(new SimpleNameValuePair("target",targetLanguageCode.getLanguageCode()));
+        for (int i = querys.size() - 1; i >= 0; i--) {
+            para.add(new SimpleNameValuePair("q",querys.get(i)));
         }
 
-        String url = null;
-        try {
-            url = String.format(BASE_TRANSLATION_URL, query,
-                    targetLanguageCode.getLanguageCode(),
-                    sourceLanguageCode.getLanguageCode(),
-                    PropertiesComponent.getInstance().getValue(StorageDataKey.GoogleApiKeyStored), "");
-        } catch (IllegalFormatException e) {
-            Log.i("error====" + e.getMessage());
-        }
 
-        Log.i("url====" + url);
 
-        if (url == null)
-            return null;
-
-        String getResult = HttpUtils.doHttpGet(url);
-        Log.i("do get result: " + getResult + "   url====" + url);
+        String getResult = HttpUtils.doHttpPost(BASE_TRANSLATION_URL,para);
+        Logger.info("do get result: " + getResult );
 
         JsonObject jsonObject = new JsonParser().parse(getResult).getAsJsonObject();
         if (jsonObject.get("error") != null) {
@@ -113,7 +91,7 @@ public class GoogleTranslationApi {
             if (translations != null) {
                 List<String> result = new ArrayList<String>();
                 for (int i = 0; i < translations.size(); i++) {
-                    result.add(translations.get(i).getAsJsonObject().get("translatedText").getAsString());
+                    result.add(URLDecoder.decode(translations.get(i).getAsJsonObject().get("translatedText").getAsString()));
                 }
                 return result;
             }

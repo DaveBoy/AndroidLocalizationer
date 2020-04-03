@@ -67,8 +67,8 @@ public class MultiSelectDialog extends DialogWrapper {
     private String myCheckboxText;
     private boolean myChecked;
 
-    private java.util.List<SupportedLanguages> data;
-    private java.util.List<SupportedLanguages> selectedLanguages = new ArrayList<SupportedLanguages>();
+    private List<SupportedLanguages> data;
+    private List<SupportedLanguages> selectedLanguages = new ArrayList<SupportedLanguages>();
     private OnOKClickedListener onOKClickedListener;
 
     public void setOnOKClickedListener(OnOKClickedListener onOKClickedListener) {
@@ -140,7 +140,7 @@ public class MultiSelectDialog extends DialogWrapper {
     }
 
     @NotNull
-    LayoutManager createRootLayout() {
+    protected LayoutManager createRootLayout() {
         return Messages.isMacSheetEmulation() ? myLayout = new MyBorderLayout() : new BorderLayout();
     }
 
