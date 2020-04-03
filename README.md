@@ -3,18 +3,23 @@
 使用方式不变：
 
 1. 本地安装插件 
-
+   
     [AndroidLocalizationer](https://github.com/DaveBoy/AndroidLocalizationer/blob/master/AndroidLocalizationer.zip)
-    [安装](https://github.com/DaveBoy/AndroidLocalizationer/blob/master/img/install.png)
+    下载后解压出 **AndroidLocalizationer.jar**文件，再如下图进行安装
+    ![安装](https://github.com/DaveBoy/AndroidLocalizationer/blob/master/img/install.png)
 2. 然后申请对应翻译的key填入设置
+
     2.1 申请
-        百度：[通用翻译API接入文档](http://api.fanyi.baidu.com/doc/21) 
+    包含google和百度两种翻译，目前百度翻译是基本版免费，google也有免费的额度，但是google的翻译弄起来比较麻烦。
     
-        goole：[翻译文本（基本版）](https://cloud.google.com/translate/docs/basic/translating-text#translate_translate_text-drest)
+    百度:[申请百度翻译api](http://api.fanyi.baidu.com/doc/12) 
+    
+    google:[google翻译（基本版）快速入门](https://cloud.google.com/translate/docs/basic/setup-basic)
     
     2.2 设置key
-        [设置key](https://github.com/DaveBoy/AndroidLocalizationer/blob/master/img/setkey.png)
-3. 选中string.xml右键选中"Convert to other languages"，选择对应的语言
+   
+    ![设置key](https://github.com/DaveBoy/AndroidLocalizationer/blob/master/img/setkey.png)
+3. 选中string.xml右键选中"Convert to other languages"，选择对应的语言,点击就可以生成了
 ## 更新日志
 
 #### V0.0.3
