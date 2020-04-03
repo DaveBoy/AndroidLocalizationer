@@ -1,17 +1,16 @@
-# An import plugin for android developer working on Google play
+# 国际化插件
+改进自[wujushan/AndroidLocalizationer](https://github.com/wujushan/AndroidLocalizationer)
+使用方式不变：
 
-#####[Instructions for usage  from westlinkin](https://github.com/westlinkin/AndroidLocalizationer/blob/master/README.md)
+1. 本地安装插件
+2. 然后申请对应翻译的key填入
+3. 选中string.xml右键选中"Convert to other languages"，选择对应的语言
+## 更新日志
+#### V0.0.2
+1. 根据google翻译最新文档接入google翻译 
 
-#####[中文教程](http://blog.csdn.net/wjskeepmaking/article/details/78817915)
-
-#####[Download zip](https://github.com/wujushan/AndroidLocalizationer/blob/master/AndroidLocalization.jar)
- 
-###ChangeLog
-####version 0.0.1
- 
- * Add Baidu Translation as default Translator.[Click here](http://api.fanyi.baidu.com/api/trans/product/index) to apply one for free.
- 
-
- 
- 
- 
+    [翻译文本（基本版）](https://cloud.google.com/translate/docs/basic/translating-text#translate_translate_text-drest)
+    
+    [创建API 密钥](https://cloud.google.com/docs/authentication/api-keys)
+    
+    [启用api](https://console.developers.google.com/apis/api/translate.googleapis.com/overview)
