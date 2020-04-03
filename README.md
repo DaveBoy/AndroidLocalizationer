@@ -1,7 +1,10 @@
 # 国际化插件
-改进自[wujushan/AndroidLocalizationer](https://github.com/wujushan/AndroidLocalizationer)
-使用方式不变：
+改进自[wujushan/AndroidLocalizationer](https://github.com/wujushan/AndroidLocalizationer)使用方式不变：
 
+## 代码的事，哪能没有bug是吧。
+我也就简单的测试了一下，如果遇到什么问题，欢迎大家提issue。
+
+## 使用说明
 1. 本地安装插件 
    
     [AndroidLocalizationer](https://github.com/DaveBoy/AndroidLocalizationer/blob/master/AndroidLocalizationer.zip)
@@ -20,6 +23,7 @@
    
     ![设置key](https://github.com/DaveBoy/AndroidLocalizationer/blob/master/img/setkey.png)
 3. 选中string.xml右键选中"Convert to other languages"，选择对应的语言,点击就可以生成了
+
 ## 更新日志
 
 #### V0.0.3
