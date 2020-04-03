@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>AndroidTranslation</id>
   <name>AndroidTranslation</name>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <vendor email="992902801@qq.com"/>
 
   <description><![CDATA[

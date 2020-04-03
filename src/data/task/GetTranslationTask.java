@@ -169,6 +169,7 @@ public class GetTranslationTask extends Task.Backgroundable {
         if (result == null || result.size() <= 0){
             return null;
         }
+
         List<AndroidString> translatedAndroidStrings = new ArrayList<>();
 //        Logger.error(needToTranslatedString.size());
 //        Logger.info("needToTranslatedString.size(): " + needToTranslatedString.size()+

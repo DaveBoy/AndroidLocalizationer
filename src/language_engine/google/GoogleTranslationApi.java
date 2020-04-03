@@ -62,7 +62,10 @@ public class GoogleTranslationApi {
             return null;
 
 
-
+        for (int i=0;i<querys.size();i++){
+            String str = querys.get(i);
+            querys.set(i,URLEncoder.encode(str).replaceAll("\\+","%20"));
+        }
 
         List<NameValuePair> para=new ArrayList<>();
         para.add(new SimpleNameValuePair("key",PropertiesComponent.getInstance().getValue(StorageDataKey.GoogleApiKeyStored)));
@@ -74,7 +77,7 @@ public class GoogleTranslationApi {
 
 
         String getResult = HttpUtils.doHttpPost(BASE_TRANSLATION_URL,para);
-        Logger.info("do get result: " + getResult );
+        Logger.info("Google Translation: " + getResult );
 
         JsonObject jsonObject = new JsonParser().parse(getResult).getAsJsonObject();
         if (jsonObject.get("error") != null) {
