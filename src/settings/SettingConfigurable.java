@@ -143,7 +143,7 @@ public class SettingConfigurable implements Configurable, ActionListener {
             languageEngineBox.setEnabled(true);
             showLanguageWhenChoose.setEnabled(true);
             languageEngineBox.setSelectedItem(currentEngine);
-            showLanguageWhenChoose.setSelectedItem("中文");
+            showLanguageWhenChoose.setSelectedItem(PropertiesComponent.getInstance().getValue(StorageDataKey.SettingLanguageShowWhenChoose,"English"));
             languageEngineBox.addActionListener(this);
             showLanguageWhenChoose.addActionListener(e -> {
                 JComboBox comboBox = (JComboBox) e.getSource();
