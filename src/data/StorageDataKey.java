@@ -26,6 +26,7 @@ public class StorageDataKey {
 
     // setting
     public static final String SettingLanguageEngine = "SettingLanguageEngine";
+    public static final String SettingLanguageShowWhenChoose = "SettingLanguageShowWhenChoose";
     public static final String BingClientIdStored = "BingClientIdStored";
     public static final String BingClientSecretStored = "BingClientSecretStored";
 

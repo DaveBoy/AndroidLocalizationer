@@ -95,6 +95,7 @@ public class SettingConfigurable implements Configurable, ActionListener {
 
     private JPanel settingPanel;
     private JComboBox languageEngineBox;
+    private JComboBox showLanguageWhenChoose;
     private TranslationEngineType currentEngine;
 
     private JLabel howToLabel;
@@ -136,10 +137,21 @@ public class SettingConfigurable implements Configurable, ActionListener {
             currentEngine = TranslationEngineType.fromName(
                     PropertiesComponent.getInstance().getValue(StorageDataKey.SettingLanguageEngine));
             TranslationEngineType[] items = TranslationEngineType.getLanguageEngineArray();
+            String[] showLanguage = new String[]{"English","中文"};
             languageEngineBox = new ComboBox(items);
+            showLanguageWhenChoose = new ComboBox(showLanguage);
             languageEngineBox.setEnabled(true);
+            showLanguageWhenChoose.setEnabled(true);
             languageEngineBox.setSelectedItem(currentEngine);
+            showLanguageWhenChoose.setSelectedItem("中文");
             languageEngineBox.addActionListener(this);
+            showLanguageWhenChoose.addActionListener(e -> {
+                JComboBox comboBox = (JComboBox) e.getSource();
+                String type = (String) comboBox.getSelectedItem();
+                Log.i("selected language: " + type);
+                PropertiesComponent.getInstance().setValue(StorageDataKey.SettingLanguageShowWhenChoose,type);
+
+            });
 
             container.add(new JLabel("Language engine: "), BorderLayout.WEST);
             container.add(languageEngineBox, BorderLayout.CENTER);

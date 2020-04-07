@@ -25,116 +25,131 @@ import java.util.List;
  * Created by Wesley Lin on 11/29/14.
  */
 public enum SupportedLanguages {
-    Afrikaans("af", "Afrikaans", "Afrikaans"),
-    Albanian("sq", "Shqiptar", "Albanian"),
-    Arabic("ar", "العربية", "Arabic"),
-    Azerbaijani("az", "Azərbaycan", "Azerbaijani"),
-    Basque("eu", "Euskal", "Basque"),
-    Bengali("bn", "বাঙালি", "Bengali"),
-    Belarusian("be", "Беларускі", "Belarusian"),
-    Bulgarian("bg", "Български", "Bulgarian"),
-    Catalan("ca", "Català", "Catalan"),
-    Chinese_Simplified("zh-CN", "简体中文", "Chinese Simplified"),
-    Chinese_Simplified_BING("zh-CHS", "简体中文", "Chinese Simplified"),
-    Chinese_Traditional("zh-TW", "正體中文", "Chinese Traditional"),
-    Chinese_Traditional_BING("zh-CHT", "正體中文", "Chinese Traditional"),
-    Croatian("hr", "Hrvatski", "Croatian"),
-    Czech("cs", "Čeština", "Czech"),
-    Danish("da", "Dansk", "Danish"),
-    Dutch("nl", "Nederlands", "Dutch"),
-    English("en", "English", "English"),
-    Esperanto("eo", "Esperanta", "Esperanto"),
-    Estonian("et", "Eesti", "Estonian"),
-    Filipino("tl", "Pilipino", "Filipino"),
-    Finnish("fi", "Suomi", "Finnish"),
-    French("fr", "Français", "French"),
-    Galician("gl", "Galego", "Galician"),
-    Georgian("ka", "ქართული", "Georgian"),
-    German("de", "Deutsch", "German"),
-    Greek("el", "Ελληνικά", "Greek"),
-    Gujarati("gu", "ગુજરાતી", "Gujarati"),
-    Haitian_Creole("ht", "Haitiancreole", "Haitian Creole"),
-    Hebrew("iw", "עברית", "Hebrew"),
-    Hebrew_BING("he", "עברית", "Hebrew"),
-    Hindi("hi", "हिंदी", "Hindi"),
-    Hungarian("hu", "Magyar", "Hungarian"),
-    Icelandic("is", "Icelandic", "Icelandic"),
-    Indonesian("id", "Indonesia", "Indonesian"),
-    Irish("ga", "Irish", "Irish"),
-    Italian("it", "Italiano", "Italian"),
-    Japanese("ja", "日本語", "Japanese"),
-    Kannada("kn", "ಕನ್ನಡ", "Kannada"),
-    Korean("ko", "한국의", "Korean"),
-    Latin("la", "Latina", "Latin"),
-    Latvian("lv", "Latvijas", "Latvian"),
-    Lithuanian("lt", "Lietuvos", "Lithuanian"),
-    Macedonian("mk", "Македонски", "Macedonian"),
-    Malay("ms", "Melayu", "Malay"),
-    Maltese("mt", "Malti", "Maltese"),
-    Norwegian("no", "Norsk", "Norwegian"),
-    Persian("fa", "فارسی", "Persian"),
-    Polish("pl", "Polski", "Polish"),
-    Portuguese("pt", "Português", "Portuguese"),
-    Romanian("ro", "Român", "Romanian"),
-    Russian("ru", "Русский", "Russian"),
-    Serbian("sr", "Српски", "Serbian"),
-    Slovak("sk", "Slovenčina", "Slovak"),
-    Slovenian("sl", "Slovenščina", "Slovenian"),
-    Spanish("es", "Español", "Spanish"),
-    Swahili("sw", "Kiswahili", "Swahili"),
-    Swedish("sv", "Svenska", "Swedish"),
-    Tamil("ta", "தமிழ்", "Tamil"),
-    Telugu("te", "తెలుగు", "Telugu"),
-    Thai("th", "ไทย", "Thai"),
-    Turkish("tr", "Türk", "Turkish"),
-    Ukrainian("uk", "Український", "Ukrainian"),
-    Urdu("ur", "اردو", "Urdu"),
-    Vietnamese("vi", "Tiếng Việt", "Vietnamese"),
-    Welsh("cy", "Cymraeg", "Welsh"),
-    Yiddish("yi", "ייִדיש", "Yiddish"),
+    //https://cloud.google.com/translate/docs/languages
+    Afrikaans("af", "Afrikaans", "Afrikaans","南非荷兰语"),
+    Albanian("sq", "Shqiptar", "Albanian","阿尔巴尼亚语"),
+    Amharic("am", "አማርኛ", "Amharic","阿姆哈拉语"),
+    Arabic("ar", "العربية", "Arabic","阿拉伯语"),
+    Armenian("ar", "Հայերեն", "Armenian","亚美尼亚语"),
+    Azerbaijani("az", "Azərbaycan", "Azerbaijani","阿塞拜疆语"),
+    Basque("eu", "Euskal", "Basque","巴斯克语"),
+    Belarusian("be", "Беларускі", "Belarusian","白俄罗斯语"),
+    Bengali("bn", "বাঙালি", "Bengali","孟加拉语"),
+    Bosnian("bs", "Bosanski", "Bosnian","波斯尼亚语"),
+    Bulgarian("bg", "Български", "Bulgarian","保加利亚语"),
+    Catalan("ca", "Català", "Catalan","加泰罗尼亚语"),
+    Cebuano("ceb", "Cebuano", "Cebuano","宿务语"),
+    Chinese_Simplified("zh-CN", "简体中文", "Chinese Simplified","中文（简体）"),
+    Chinese_Simplified_BING("zh-CHS", "简体中文", "Chinese Simplified","中文（简体）"),
+    Chinese_Traditional("zh-TW", "正體中文", "Chinese Traditional","中文（繁体）"),
+    Chinese_Traditional_BING("zh-CHT", "正體中文", "Chinese Traditional","中文（繁体）"),
+    Corsican("co", "Corsu", "Corsican","科西嘉语"),
+    Croatian("hr", "Hrvatski", "Croatian","克罗地亚语"),
+    Czech("cs", "Čeština", "Czech","捷克语"),
+    Danish("da", "Dansk", "Danish","丹麦语"),
+    Dutch("nl", "Nederlands", "Dutch","荷兰语"),
+    English("en", "English", "English","英语"),
+    Esperanto("eo", "Esperanta", "Esperanto","世界语"),
+    Estonian("et", "Eesti", "Estonian","爱沙尼亚语"),
+    Filipino("tl", "Pilipino", "Filipino","菲律宾语"),
+    Finnish("fi", "Suomi", "Finnish","芬兰语"),
+    French("fr", "Français", "French","法语"),
+    //Frisian("fy", "Frysk", "Frisian","弗里斯兰语"),
+    Galician("gl", "Galego", "Galician","加利西亚语"),
+    Georgian("ka", "ქართული", "Georgian","格鲁吉亚语"),
+    German("de", "Deutsch", "German","德语"),
+    Greek("el", "Ελληνικά", "Greek","希腊语"),
+    Gujarati("gu", "ગુજરાતી", "Gujarati","古吉拉特语"),
+    Haitian_Creole("ht", "Haitiancreole", "Haitian Creole","海地克里奥尔语"),
+    Hausa("ha", "Hausa", "Hausa","豪萨语"),
+    Hawaiian("haw", "ʻ .lelo Hawaiʻi", "Hawaiian","夏威夷语"),
+    Hebrew("iw", "עברית", "Hebrew","希伯来语"),
+    Hebrew_BING("he", "עברית", "Hebrew","希伯来语"),
+    Hindi("hi", "हिंदी", "Hindi","印地语"),
+    Hungarian("hu", "Magyar", "Hungarian","匈牙利语"),
+    Icelandic("is", "Icelandic", "Icelandic","冰岛语"),
+    Igbo("ig", "Ndi Igbo", "Igbo","伊博语"),
+    Indonesian("id", "Indonesia", "Indonesian","印度尼西亚语"),
+    Irish("ga", "Irish", "Irish","爱尔兰语"),
+    Italian("it", "Italiano", "Italian","意大利语"),
+    Japanese("ja", "日本語", "Japanese","日语"),
+    Javanese("jv", "Basa Jawa", "Javanese","爪哇语"),
+    Kannada("kn", "ಕನ್ನಡ", "Kannada","卡纳达语"),
+    Korean("ko", "한국의", "Korean","韩语"),
+    Latin("la", "Latina", "Latin","拉丁文"),
+    Latvian("lv", "Latvijas", "Latvian","拉脱维亚语"),
+    Lithuanian("lt", "Lietuvos", "Lithuanian","立陶宛语"),
+    Macedonian("mk", "Македонски", "Macedonian","马其顿语"),
+    Malay("ms", "Melayu", "Malay","马来语"),
+    Maltese("mt", "Malti", "Maltese","马耳他语"),
+    Norwegian("no", "Norsk", "Norwegian","挪威语"),
+    Persian("fa", "فارسی", "Persian","波斯语"),
+    Polish("pl", "Polski", "Polish","波兰语"),
+    Portuguese("pt", "Português", "Portuguese","葡萄牙语"),
+    Romanian("ro", "Român", "Romanian","罗马尼亚语"),
+    Russian("ru", "Русский", "Russian","俄语"),
+    Serbian("sr", "Српски", "Serbian","塞尔维亚语"),
+    Slovak("sk", "Slovenčina", "Slovak","斯洛伐克语"),
+    Slovenian("sl", "Slovenščina", "Slovenian","斯洛文尼亚语"),
+    Spanish("es", "Español", "Spanish","西班牙语"),
+    Swahili("sw", "Kiswahili", "Swahili","斯瓦希里语"),
+    Swedish("sv", "Svenska", "Swedish","瑞典语"),
+    Tamil("ta", "தமிழ்", "Tamil","泰米尔语"),
+    Telugu("te", "తెలుగు", "Telugu","泰卢固语"),
+    Thai("th", "ไทย", "Thai","泰文"),
+    Turkish("tr", "Türk", "Turkish","土耳其语"),
+    Ukrainian("uk", "Український", "Ukrainian","乌克兰语"),
+    Urdu("ur", "اردو", "Urdu","乌尔都语"),
+    Vietnamese("vi", "Tiếng Việt", "Vietnamese","越南语"),
+    Welsh("cy", "Cymraeg", "Welsh","威尔士语"),
+    Yiddish("yi", "ייִדיש", "Yiddish","意第绪语"),
 
-    AUTO_BAIDU("auto","自动检测","auto check"),
-    Chinese_Simplified_BAIDU("zh", "简体中文", "Chinese Simplified","zh-rCN"),
-    Chinese_Traditional_BAIDU("cht", "正體中文", "Chinese Traditional","zh-rTW"),
-    English_BAIDU("en", "English", "English","en"),
-    Japanese_BAIDU("jp","日本語","Japanese","ja"),
-    Korean_BAIDU("kor","","Korean","ko"),
-    French_BAIDU("fra", "Français", "French","fr"),
-    Spanish_BAIDU("spa", "Español", "Spanish","es"),
-    Thai_BAIDU("th", "ไทย", "Thai","th"),
-    Arabic_BAIDU("ara", "العربية", "Arabic","ar"),
-    Russian_BAIDU("ru", "Русский", "Russian","ru"),
-    Portuguese_BAIDU("pt", "Português", "Portuguese","pt"),
-    German_BAIDU("de", "Deutsch", "German","de"),
-    Italian_BAIDU("it", "Italiano", "Italian","it"),
-    Greek_BAIDU("el", "Ελληνικά", "Greek","el"),
-    Dutch_BAIDU("nl", "Nederlands", "Dutch","nl"),
-    Polish_BAIDU("pl", "Polski", "Polish","pl"),
-    Bulgarian_BAIDU("bul", "Български", "Bulgarian","bg"),
-    Estonian_BAIDU("est", "Eesti", "Estonian","et"),
-    Danish_BAIDU("dan", "Dansk", "Danish","da"),
-    Finnish_BAIDU("fin", "Suomi", "Finnish","fi"),
-    Czech_BAIDU("cs", "Čeština", "Czech","cs"),
-    Romanian_BAIDU("rom", "Român", "Romanian","ro"),
-    Slovenian_BAIDU("slo", "Slovenščina", "Slovenian","sl"),
-    Swedish_BAIDU("swe", "Svenska", "Swedish","sv"),
-    Hungarian_BAIDU("hu", "Magyar", "Hungarian","hu"),
-    Vietnamese_BAIDU("vie", "Tiếng Việt", "Vietnamese","vi");
+    //http://api.fanyi.baidu.com/doc/21
+    AUTO_BAIDU("auto","自动检测","auto check","自动检测"),
+    Chinese_Simplified_BAIDU("zh", "简体中文", "Chinese Simplified","中文简体","zh-rCN"),
+    English_BAIDU("en", "English", "English","英语","en"),
+    Japanese_BAIDU("jp","日本語","Japanese","日语","ja"),
+    Korean_BAIDU("kor","","Korean","韩语","ko"),
+    French_BAIDU("fra", "Français", "French","法语","fr"),
+    Spanish_BAIDU("spa", "Español", "Spanish","西班牙语","es"),
+    Thai_BAIDU("th", "ไทย", "Thai","泰语","th"),
+    Arabic_BAIDU("ara", "العربية", "Arabic","阿拉伯语","ar"),
+    Russian_BAIDU("ru", "Русский", "Russian","俄语","ru"),
+    Portuguese_BAIDU("pt", "Português", "Portuguese","葡萄牙语","pt"),
+    German_BAIDU("de", "Deutsch", "German","德语","de"),
+    Italian_BAIDU("it", "Italiano", "Italian","意大利语","it"),
+    Greek_BAIDU("el", "Ελληνικά", "Greek","希腊语","el"),
+    Dutch_BAIDU("nl", "Nederlands", "Dutch","荷兰语","nl"),
+    Polish_BAIDU("pl", "Polski", "Polish","波兰语","pl"),
+    Bulgarian_BAIDU("bul", "Български", "Bulgarian","保加利亚语","bg"),
+    Estonian_BAIDU("est", "Eesti", "Estonian","爱沙尼亚语","et"),
+    Danish_BAIDU("dan", "Dansk", "Danish","丹麦语","da"),
+    Finnish_BAIDU("fin", "Suomi", "Finnish","芬兰语","fi"),
+    Czech_BAIDU("cs", "Čeština", "Czech","捷克语","cs"),
+    Romanian_BAIDU("rom", "Român", "Romanian","罗马尼亚语","ro"),
+    Slovenian_BAIDU("slo", "Slovenščina", "Slovenian","斯洛文尼亚语","sl"),
+    Swedish_BAIDU("swe", "Svenska", "Swedish","瑞典语","sv"),
+    Hungarian_BAIDU("hu", "Magyar", "Hungarian","匈牙利语","hu"),
+    Chinese_Traditional_BAIDU("cht", "正體中文", "Chinese Traditional","中文繁体","zh-rTW"),
+    Vietnamese_BAIDU("vie", "Tiếng Việt", "Vietnamese","越南语","vi");
 
     private String languageCode;
     private String languageDisplayName;
     private String languageEnglishDisplayName;
+    private String languageChineseDisplayName;
     private String realLanguageCode;
 
-    SupportedLanguages(String languageCode, String languageDisplayName, String languageEnglishDisplayName) {
+    SupportedLanguages(String languageCode, String languageDisplayName, String languageEnglishDisplayName,String languageChineseDisplayName) {
         this.languageCode = languageCode;
         this.languageDisplayName = languageDisplayName;
         this.languageEnglishDisplayName = languageEnglishDisplayName;
+        this.languageChineseDisplayName = languageChineseDisplayName;
     }
-    SupportedLanguages(String languageCode, String languageDisplayName, String languageEnglishDisplayName,String realLanguageCode) {
+    SupportedLanguages(String languageCode, String languageDisplayName, String languageEnglishDisplayName,String languageChineseDisplayName,String realLanguageCode) {
         this.languageCode = languageCode;
         this.languageDisplayName = languageDisplayName;
         this.languageEnglishDisplayName = languageEnglishDisplayName;
+        this.languageChineseDisplayName = languageChineseDisplayName;
         this.realLanguageCode = realLanguageCode;
     }
     public String getLanguageCode() {
@@ -147,6 +162,9 @@ public enum SupportedLanguages {
 
     public String getLanguageEnglishDisplayName() {
         return languageEnglishDisplayName;
+    }
+    public String getLanguageChineseDisplayName() {
+        return languageChineseDisplayName;
     }
     public String getRealLanguageCode() {
         return realLanguageCode;
@@ -214,7 +232,7 @@ public enum SupportedLanguages {
         result.add(Vietnamese_BAIDU);
         return result;
     }
-    // google supported language code: https://cloud.google.com/translate/v2/using_rest, language reference section
+    // google supported language code: https://cloud.google.com/translate/docs/languages, language reference section
     private static List<SupportedLanguages> getGoogleLanguages() {
         List<SupportedLanguages> result = new ArrayList<SupportedLanguages>();
         result.add(Afrikaans);

@@ -280,8 +280,13 @@ public class MultiSelectDialog extends DialogWrapper {
             int gridCol = 3;
             int gridRow = (data.size() % gridCol == 0) ? data.size() / gridCol : data.size() / gridCol + 1;
             container.setLayout(new GridLayout(gridRow, gridCol));
+            boolean showEnglish= PropertiesComponent.getInstance().getValue(StorageDataKey.SettingLanguageShowWhenChoose,"English").equals("English");
             for (final SupportedLanguages language : data) {
-                JCheckBox checkbox = new JCheckBox(language.getLanguageEnglishDisplayName()
+                String display;
+                if(showEnglish)
+                    display=language.getLanguageEnglishDisplayName();
+                else display=language.getLanguageChineseDisplayName();
+                JCheckBox checkbox = new JCheckBox(display
                         + " (" + language.getLanguageDisplayName() + ") ");
                 checkbox.addItemListener(new ItemListener() {
                     @Override
