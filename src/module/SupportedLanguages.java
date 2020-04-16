@@ -109,7 +109,7 @@ public enum SupportedLanguages {
     Chinese_Simplified_BAIDU("zh", "简体中文", "Chinese Simplified","中文简体","zh-rCN"),
     English_BAIDU("en", "English", "English","英语","en"),
     Japanese_BAIDU("jp","日本語","Japanese","日语","ja"),
-    Korean_BAIDU("kor","","Korean","韩语","ko"),
+    Korean_BAIDU("kor","한국어","Korean","韩语","ko"),
     French_BAIDU("fra", "Français", "French","法语","fr"),
     Spanish_BAIDU("spa", "Español", "Spanish","西班牙语","es"),
     Thai_BAIDU("th", "ไทย", "Thai","泰语","th"),

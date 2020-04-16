@@ -156,7 +156,13 @@ public class SettingConfigurable implements Configurable, ActionListener {
             container.add(new JLabel("Language engine: "), BorderLayout.WEST);
             container.add(languageEngineBox, BorderLayout.CENTER);
 
+            Container container1 = new Container();
+            container1.setLayout(new BorderLayout());
+            container1.add(new JLabel("Language when choose: "), BorderLayout.WEST);
+            container1.add(showLanguageWhenChoose, BorderLayout.CENTER);
+
             settingPanel.add(container);
+            settingPanel.add(container1);
 
             initContentContainer();
             initAndAddFilterContainer();
