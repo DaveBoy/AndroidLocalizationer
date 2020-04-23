@@ -3,8 +3,17 @@
 
     <string name="default_scene">Default scenario:</string>
     <string name="formula_speed">Speed:</string>
-    <string name="formula_grade">Slope:</string>
+    <string name="formula_grade"  translatable="false">Slope:</string>
     <string name="speed_str">%D km / h</string>
+    <string name="language_eu">English</string>
+    <!--<string name="language_text1">English</string>-->
+
+    <!--languages-->
+    <string-array name="language_text">
+        <item>Chinese</item>
+        <item>@string/language_eu</item>
+    </string-array>
+    <!--end-->
     <string name="hint_dev_lock"><Data><![CDATA[
     This operation will lock the device. You need to enter the <font color="#f39800"> Settings - > device information < / font > page "<font color="#f39800"> scan code to activate < / font >", then the treadmill can be used normally.]]>
     </Data></string>

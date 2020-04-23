@@ -30,11 +30,9 @@ import data.SerializeUtil;
 import data.StorageDataKey;
 import language_engine.TranslationEngineType;
 import language_engine.baidu.BaiduTranslationApi;
-import language_engine.bing.BingTranslationApi;
+
 import language_engine.google.GoogleTranslationApi;
-import module.AndroidString;
-import module.FilterRule;
-import module.SupportedLanguages;
+import module.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import util.Logger;
@@ -54,11 +52,6 @@ public class GetTranslationTask extends Task.Backgroundable {
     private TranslationEngineType translationEngineType;
     private boolean override;
     private VirtualFile clickedFile;
-
-    private static final String BingIdInvalid = "Invalid client id or client secret, " +
-            "please check them <html><a href=\"https://datamarket.azure.com/developer/applications\">here</a></html>";
-    private static final String BingQuotaExceeded = "Microsoft Translator quota exceeded, " +
-            "please check your data usage <html><a href=\"https://datamarket.azure.com/account/datasets\">here</a></html>";
 
     private static final String GoogleErrorUnknown = "Error, please check API key in the settings panel.";
     private static final String GoogleDailyLimitError = "Daily Limit Exceeded, please note that Google Translation API " +
@@ -177,9 +170,27 @@ public class GetTranslationTask extends Task.Backgroundable {
 //        Logger.error(needToTranslatedString.size());
 //        Logger.info("needToTranslatedString.size(): " + needToTranslatedString.size()+
 //                "result.size(): " + result.size());
-        for (int i = 0; i < needToTranslatedString.size(); i++) {
-            translatedAndroidStrings.add(new AndroidString(
-                    needToTranslatedString.get(i).getKey(), result.get(i)));
+        for (int i = 0,j=0; i < needToTranslatedString.size()&&j<needToTranslatedString.size(); j++) {
+            AndroidString oldAndroidString = needToTranslatedString.get(j);
+
+            if(oldAndroidString instanceof AndroidStringArrayEntity){
+                AndroidStringArrayEntity androidStringArrayEntity = new AndroidStringArrayEntity(oldAndroidString.getKey());
+                List<StringArrayItem> child = ((AndroidStringArrayEntity) oldAndroidString).getChild();
+                for(StringArrayItem item:child ){
+                    if(item.isLink()){
+                        androidStringArrayEntity.addChild(item);
+                    }else {
+                        androidStringArrayEntity.addChild(new StringArrayItem(result.get(i)));
+                        i++;
+                    }
+                }
+                translatedAndroidStrings.add(androidStringArrayEntity);
+            }else{
+                translatedAndroidStrings.add(new AndroidString(
+                        oldAndroidString.getKey(), result.get(i)));
+                i++;
+            }
+
         }
         return translatedAndroidStrings;
     }
@@ -225,16 +236,7 @@ public class GetTranslationTask extends Task.Backgroundable {
         List<AndroidString> result = new ArrayList<AndroidString>();
 
 
-        VirtualFile targetStringFile = LocalFileSystem.getInstance().findFileByPath(
-                getValueResourcePath(language));
-        List<AndroidString> targetAndroidStrings = new ArrayList<AndroidString>();
-        if (targetStringFile != null) {
-            try {
-                targetAndroidStrings = AndroidString.getAndroidStringsList(targetStringFile.contentsToByteArray());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
+
 
         String rulesString = PropertiesComponent.getInstance().getValue(StorageDataKey.SettingFilterRules);
         List<FilterRule> filterRules = new ArrayList<FilterRule>();
@@ -298,22 +300,18 @@ public class GetTranslationTask extends Task.Backgroundable {
 
             // if override is checked, skip setting the existence value, for performance issue
             if (!override) {
-                String existenceValue = getAndroidStringValueInList(existenceAndroidStrings, resultString.getKey());
-                if (existenceValue != null) {
-                    resultString.setValue(existenceValue);
-                }
+                replaceValueOrChildren(existenceAndroidStrings, resultString);
             }
-
-            String translatedValue = getAndroidStringValueInList(translatedAndroidStrings, resultString.getKey());
-            if (translatedValue != null) {
-                resultString.setValue(translatedValue);
-            }
+            //TODO bug?
+            replaceValueOrChildren(translatedAndroidStrings, resultString);
 
             targetAndroidStrings.add(resultString);
         }
         Log.i("targetAndroidStrings: " + targetAndroidStrings);
         return targetAndroidStrings;
     }
+
+
 
     private static void writeAndroidStringToLocal(final Project myProject, String filePath, List<AndroidString> fileContent) {
         File file = new File(filePath);
@@ -384,18 +382,23 @@ public class GetTranslationTask extends Task.Backgroundable {
         return sb.toString();
     }
 
-    private static boolean isAndroidStringListContainsKey(List<AndroidString> androidStrings, String key) {
-        List<String> keys = AndroidString.getAndroidStringKeys(androidStrings);
-        return keys.contains(key);
-    }
 
-    public static String getAndroidStringValueInList(List<AndroidString> androidStrings, String key) {
+
+    public static AndroidString getAndroidStringInList(List<AndroidString> androidStrings, String key) {
         for (AndroidString androidString : androidStrings) {
             if (androidString.getKey().equals(key)) {
-                return androidString.getValue();
+                return androidString;
             }
         }
         return null;
     }
-
+    private static void replaceValueOrChildren(List<AndroidString> translatedAndroidStrings, AndroidString resultString) {
+        AndroidString translatedValue = getAndroidStringInList(translatedAndroidStrings, resultString.getKey());
+        if (translatedValue != null) {
+            resultString.setValue(translatedValue.getValue());
+            if(translatedValue instanceof AndroidStringArrayEntity){
+                ((AndroidStringArrayEntity) resultString).setChild( ((AndroidStringArrayEntity) translatedValue).getChild());
+            }
+        }
+    }
 }
