@@ -87,7 +87,7 @@ public class GetTranslationTask extends Task.Backgroundable {
 
             SupportedLanguages language = selectedLanguages.get(i);
 
-            if (language != null && !"".equals(language) && !language.equals(SupportedLanguages.English)) {
+            if (language != null && !"".equals(language) /*&& !language.equals(SupportedLanguages.English)*/) {
 
                 List<AndroidString> androidStringList = filterAndroidString(androidStrings, language, override);
 
@@ -115,6 +115,7 @@ public class GetTranslationTask extends Task.Backgroundable {
                             + " (" + language.getLanguageDisplayName() + ")");
                 }
                 String fileName = getValueResourcePath(language);
+                Logger.info("output path:"+fileName);
                 List<AndroidString> fileContent = getTargetAndroidStrings(androidStrings, translationResult, fileName, override);
                 writeAndroidStringToLocal(myProject, fileName, fileContent);
             }
@@ -131,10 +132,12 @@ public class GetTranslationTask extends Task.Backgroundable {
     }
 
     private String getValueResourcePath(SupportedLanguages language) {
-        String resPath = clickedFile.getPath().substring(0,
-                clickedFile.getPath().indexOf("/res/") + "/res/".length());
+        String resPath = clickedFile.getParent().getParent().getPath();
 
-        return resPath + "values-" + language.getAndroidStringFolderNameSuffix()
+       /* String resPath = clickedFile.getPath().substring(0,
+                clickedFile.getPath().indexOf("/res/") + "/res/".length());*/
+
+        return resPath + "/values-" + language.getAndroidStringFolderNameSuffix()
                 + "/" + clickedFile.getName();
     }
 

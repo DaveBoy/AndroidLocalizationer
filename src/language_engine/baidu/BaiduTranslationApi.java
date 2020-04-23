@@ -96,7 +96,7 @@ public class BaiduTranslationApi {
                     if (translations != null) {
                         for (int i = 0; i < translations.size(); i++) {
                             String result = translations.get(i).getAsJsonObject().get("dst").getAsString();
-                            results.add(URLDecoder.decode(result));
+                            results.add(/*URLDecoder.decode(*/result);
                         }
 
                     }

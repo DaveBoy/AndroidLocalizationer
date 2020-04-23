@@ -64,7 +64,7 @@ public class GoogleTranslationApi {
 
         for (int i=0;i<querys.size();i++){
             String str = querys.get(i);
-            querys.set(i,URLEncoder.encode(str).replaceAll("\\+","%20"));
+            querys.set(i,str);
         }
 
         List<NameValuePair> para=new ArrayList<>();
@@ -94,7 +94,7 @@ public class GoogleTranslationApi {
             if (translations != null) {
                 List<String> result = new ArrayList<String>();
                 for (int i = 0; i < translations.size(); i++) {
-                    result.add(URLDecoder.decode(translations.get(i).getAsJsonObject().get("translatedText").getAsString()));
+                    result.add(translations.get(i).getAsJsonObject().get("translatedText").getAsString());
                 }
                 return result;
             }

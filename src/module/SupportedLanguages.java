@@ -250,7 +250,7 @@ public enum SupportedLanguages {
         result.add(Czech);
         result.add(Danish);
         result.add(Dutch);
-//        result.add(English);
+        result.add(English);
         result.add(Esperanto);
         result.add(Estonian);
         result.add(Filipino);
