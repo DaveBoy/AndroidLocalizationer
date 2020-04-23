@@ -303,13 +303,11 @@ public class GetTranslationTask extends Task.Backgroundable {
             AndroidString string = sourceAndroidStrings.get(i);
             AndroidString resultString = new AndroidString(string);
 
+            replaceValueOrChildren(translatedAndroidStrings, resultString);
             // if override is checked, skip setting the existence value, for performance issue
-            if (!override) {
+            if (!override) {//不覆盖原有的
                 replaceValueOrChildren(existenceAndroidStrings, resultString);
             }
-            //TODO bug?
-            replaceValueOrChildren(translatedAndroidStrings, resultString);
-
             targetAndroidStrings.add(resultString);
         }
         Log.i("targetAndroidStrings: " + targetAndroidStrings);
