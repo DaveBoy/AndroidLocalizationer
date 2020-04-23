@@ -173,6 +173,7 @@ public class GetTranslationTask extends Task.Backgroundable {
         for (int i = 0,j=0; i < needToTranslatedString.size()&&j<needToTranslatedString.size(); j++) {
             AndroidString oldAndroidString = needToTranslatedString.get(j);
 
+            //link是处理引用
             if(oldAndroidString instanceof AndroidStringArrayEntity){
                 AndroidStringArrayEntity androidStringArrayEntity = new AndroidStringArrayEntity(oldAndroidString.getKey());
                 List<StringArrayItem> child = ((AndroidStringArrayEntity) oldAndroidString).getChild();
@@ -186,9 +187,13 @@ public class GetTranslationTask extends Task.Backgroundable {
                 }
                 translatedAndroidStrings.add(androidStringArrayEntity);
             }else{
-                translatedAndroidStrings.add(new AndroidString(
-                        oldAndroidString.getKey(), result.get(i)));
-                i++;
+                if(oldAndroidString.isLink()){
+                    translatedAndroidStrings.add(oldAndroidString);
+                }else {
+                    translatedAndroidStrings.add(new AndroidString(
+                            oldAndroidString.getKey(), result.get(i)));
+                    i++;
+                }
             }
 
         }

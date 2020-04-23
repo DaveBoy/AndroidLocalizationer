@@ -59,11 +59,17 @@ import java.util.List;
 public class AndroidString{
     protected String key;
     protected String value;
+    private boolean link;
 
-
+    public AndroidString(String key, String value,boolean localLink) {
+        this.key = key;
+        this.value = value;
+        this.link = localLink;
+    }
     public AndroidString(String key, String value) {
         this.key = key;
         this.value = value;
+        this.link = false;
     }
 
     public AndroidString(AndroidString androidString) {
@@ -118,8 +124,7 @@ public class AndroidString{
                         String trans=string.attr("translatable");
                         if(!"false".equals(trans)) {
                             String text=string.text();
-                            if(!isLocalLink(text))
-                                androidStrings.add(new AndroidString(string.attr("name"), text));
+                            androidStrings.add(new AndroidString(string.attr("name"), text,isLocalLink(text)));
                         }
                         break;
                     case "string-array":
@@ -162,5 +167,9 @@ public class AndroidString{
             }
         }
         return result;
+    }
+
+    public boolean isLink() {
+        return link;
     }
 }
