@@ -76,42 +76,46 @@ public class GetTranslationTask extends Task.Backgroundable {
 
     @Override
     public void run(ProgressIndicator indicator) {
-        for (int i = 0; i < selectedLanguages.size(); i++) {
+        try {
+            for (int i = 0; i < selectedLanguages.size(); i++) {
 
-            SupportedLanguages language = selectedLanguages.get(i);
+                SupportedLanguages language = selectedLanguages.get(i);
 
-            if (language != null && !"".equals(language) /*&& !language.equals(SupportedLanguages.English)*/) {
+                if (language != null && !"".equals(language) /*&& !language.equals(SupportedLanguages.English)*/) {
 
-                List<AndroidString> androidStringList = filterAndroidString(androidStrings, language, override);
+                    List<AndroidString> androidStringList = filterAndroidString(androidStrings, language, override);
 
-                List<List<AndroidString>> filteredAndSplittedString
-                        = splitAndroidString(androidStringList, translationEngineType);
+                    List<List<AndroidString>> filteredAndSplittedString
+                            = splitAndroidString(androidStringList, translationEngineType);
 
-                List<AndroidString> translationResult = new ArrayList<AndroidString>();
-                for (int j = 0; j < filteredAndSplittedString.size(); j++) {
+                    List<AndroidString> translationResult = new ArrayList<AndroidString>();
+                    for (int j = 0; j < filteredAndSplittedString.size(); j++) {
 
-                    List<AndroidString> strings = getTranslationEngineResult(
-                            filteredAndSplittedString.get(j),
-                            language,
-                            SupportedLanguages.AUTO_BAIDU,
-                            translationEngineType
-                    );
+                        List<AndroidString> strings = getTranslationEngineResult(
+                                filteredAndSplittedString.get(j),
+                                language,
+                                SupportedLanguages.AUTO_BAIDU,
+                                translationEngineType
+                        );
 
-                    if (strings == null) {
-                        Log.i("language===" + language);
-                        continue;
+                        if (strings == null) {
+                            Log.i("language===" + language);
+                            continue;
+                        }
+                        translationResult.addAll(strings);
+                        indicator.setFraction(indicatorFractionFrame * (double) (i)
+                                + indicatorFractionFrame / filteredAndSplittedString.size() * (double) (j));
+                        indicator.setText("Translating to " + language.getLanguageEnglishDisplayName()
+                                + " (" + language.getLanguageDisplayName() + ")");
                     }
-                    translationResult.addAll(strings);
-                    indicator.setFraction(indicatorFractionFrame * (double) (i)
-                            + indicatorFractionFrame / filteredAndSplittedString.size() * (double) (j));
-                    indicator.setText("Translating to " + language.getLanguageEnglishDisplayName()
-                            + " (" + language.getLanguageDisplayName() + ")");
+                    String fileName = getValueResourcePath(language);
+                    Logger.info("output path:" + fileName);
+                    List<AndroidString> fileContent = getTargetAndroidStrings(androidStrings, translationResult, fileName, override);
+                    writeAndroidStringToLocal(myProject, fileName, fileContent);
                 }
-                String fileName = getValueResourcePath(language);
-                Logger.info("output path:"+fileName);
-                List<AndroidString> fileContent = getTargetAndroidStrings(androidStrings, translationResult, fileName, override);
-                writeAndroidStringToLocal(myProject, fileName, fileContent);
             }
+        }catch (Exception e){
+            Logger.error(e.getLocalizedMessage());
         }
     }
 
@@ -301,8 +305,8 @@ public class GetTranslationTask extends Task.Backgroundable {
 
         for (int i = 0; i < sourceAndroidStrings.size(); i++) {
             AndroidString string = sourceAndroidStrings.get(i);
-            AndroidString resultString = new AndroidString(string);
-
+            AndroidString resultString ;
+            if(string instanceof  AndroidStringArrayEntity) resultString= new AndroidStringArrayEntity(string.getKey()); else resultString=new AndroidString(string);
             replaceValueOrChildren(translatedAndroidStrings, resultString);
             // if override is checked, skip setting the existence value, for performance issue
             if (!override) {//不覆盖原有的

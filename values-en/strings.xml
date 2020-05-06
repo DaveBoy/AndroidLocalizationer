@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="browser">Browse</string>
+	<string name="wifi_keyboard_1">One</string>
+	<string name="wifi_keyboard_m">M</string>
+	<string name="wifi_keyboard_more">...</string>
+	<string name="wifi_keyboard_s26">''</string>
+	<string name="dongle_device_4">honor watch S1-c86</string>
+	<string name="plan_step_1">Set goals</string>
+	<string-array name="plan_steps">
+	<item>@string/plan_step_1</item>
+	<item>我的运动计划</item>
+</string-array>
+	<string name="maf_runing">MAF \ nhealth run</string>
+	<string-array name="language_text">
+	<item>Simplified Chinese</item>
+	<item>English</item>
+</string-array>
+	<string name="hi_str2">Hi, you can now wake me up by saying \% 1 $s \ "or \% 2 $s \"</string>
+	<string name="hint_dev_lock">This operation will lock the device. You need to enter the < font color = "ා" > Settings - > device information < / font > page "< font color =" ා "> scan code to activate < / font >", then the treadmill can be used normally.</string>
+
+</resources>

@@ -142,8 +142,8 @@ public class AndroidString{
     private static void getArrayItem(AndroidStringArrayEntity array, Element string) {
         Elements children = string.children();
         for (Element child : children) {
-            String text=string.text();
-            array.addChild(new StringArrayItem(child.text(),isLocalLink(text)));
+            String text=child.text();
+            array.addChild(new StringArrayItem(text,isLocalLink(text)));
         }
     }
     private static boolean isLocalLink(String str){
